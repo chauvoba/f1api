@@ -16,7 +16,7 @@ module.exports = {
                 type: Sequelize.DataTypes.STRING
             },
             date: {
-                type: Sequelize.DataTypes.DATE
+                type: Sequelize.DataTypes.DATEONLY
             },
             year: {
                 type: Sequelize.DataTypes.INTEGER

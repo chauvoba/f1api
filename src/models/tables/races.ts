@@ -13,7 +13,7 @@ export const Races = sequelize.define('races_table', {
     //allowNull: false
   },
   date: {
-    type: DataTypes.DATE,
+    type: DataTypes.DATEONLY,
     //allowNull: false
   },
   year: {

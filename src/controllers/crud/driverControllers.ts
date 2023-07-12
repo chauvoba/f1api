@@ -13,12 +13,16 @@ export class DriverControllers extends CrudController<typeof driverServices>{
         const result = await this.service.getDriverInfo(params);
         return result;
     }
-    async getAllDriverResultByYear(params: {year: Number}){
-        const result = await this.service.getAllDriverResultByYear(params);
-        return result;
-    }
+    // async getAllDriverResultByYear(params: {year: Number}){
+    //     const result = await this.service.getAllDriverResultByYear(params);
+    //     return result;
+    // }
     async getDriverResultByYear(params: {year: Number, driverid: String}){
         const result = await this.service.getDriverResultByYear(params);
         return result;
     }
+    // async getDriverResultByYear2(params: {year: Number, drivername: String}){
+    //     const result = await this.service.getDriverResultByYear2(params);
+    //     return result;
+    // }
 }

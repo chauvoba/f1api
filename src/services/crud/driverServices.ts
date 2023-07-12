@@ -61,62 +61,82 @@ export class DriverServices extends CrudService<typeof Drivers>{
             })
         }
     }
-    async getAllDriverResultByYear(params: {year: Number}) {
-        try{
-            const result = await RaceDrivers.findAll({
-                where: {"$races.year$": params.year},
-                include: [{
-                    association: "races",
-                    attributes: ["year"]
-                },
-                {
-                    association: "drivers",
-                    attributes: ["id", "driver_name", "country"]
-                }],
-                attributes: [[sequelize.fn("sums", sequelize.col("points")), "pts"], "car"],
-                group: ["races.year", "drivers.id", "drivers.name", "drivers.country", "car"],
-                order: [["pts", "desc"]],
-                raw: true
-            })
-            if(!result) throw errorService.database.queryFail("found no result");
-            return result
-        }catch(e){
-            console.log(e)
-            return ({
-                resp: e,
-                logs: `driverServices error`,
-                erid: HttpStatus.INTERNAL_SERVER_ERROR,
-                type: AppExceptionType.INTERNAL_SERVER_ERROR
-            })
-        }
-    }
     async getDriverResultByYear(params: {year: Number, driverid: String}){
         try{
             const result = await RaceDrivers.findAll({
-                where: {"$races.year$": params.year, "$drivers.id$": params.driverid},
-                include: [{
-                    association: "races",
-                    attributes: ["id", "grand_prix", "date", "year"]
+                where: {
+                    "$races.year$": params.year,
+                    "$drivers.id$": params.driverid
                 },
-                {
-                    association: "drivers",
-                    attributes: ["id"]
-                }],
-                attributes: [[sequelize.fn("sums", sequelize.col("points")), "pts"], "car", "position"],
-                group: ["races.year", "drivers.id", "races.grand_prix", "races.date", "car", "position"],
-                order: [["date", "asc"]],
+                include: [
+                    {
+                        association: "drivers",
+                        attributes: ["driver_name"]
+                    },
+                    {
+                        association: "races",
+                        attributes: ["grand_prix", "date"]
+                    }
+                ],
+                attributes: [
+                    "car", "position", "points"
+                ],
                 raw: true
             })
-            if(!result) throw errorService.database.queryFail("found no result");
-            return result
+            if(result.length === 0) return errorService.database.queryFail("found no result");
+            return ({
+                resp: `result for driver ${params.driverid} in ${params.year}`,
+                result
+            });
         }catch(e){
-            console.log(e)
+            console.log(e);
             return ({
                 resp: e,
-                logs: `driversServices error`,
+                logs: `driverServices-get-driver-result error`,
                 erid: HttpStatus.INTERNAL_SERVER_ERROR,
                 type: AppExceptionType.INTERNAL_SERVER_ERROR
             })
         }
     }
+    // async getDriverResultByYear2(params: {year: Number, drivername: String}){
+    //     try{
+    //         function capitalizeFirstLetter(string: String) {
+    //             return string.charAt(0).toUpperCase() + string.slice(1);
+    //         }
+    //         console.log(capitalizeFirstLetter(params.drivername.split('_').join(" ")));
+    //         const result = await RaceDrivers.findAll({
+    //             where: {
+    //                 "$races.year$": params.year,
+    //                 "$drivers.driver_name$": params.drivername
+    //             },
+    //             include: [
+    //                 {
+    //                     association: "drivers",
+    //                     attributes: ["driver_name"]
+    //                 },
+    //                 {
+    //                     association: "races",
+    //                     attributes: ["grand_prix", "date"]
+    //                 }
+    //             ],
+    //             attributes: [
+    //                 "car", "position", "points"
+    //             ],
+    //             raw: true
+    //         })
+    //         if(result.length === 0) return errorService.database.queryFail("found no result");
+    //         return ({
+    //             resp: `result for driver ${params.drivername} in ${params.year}`,
+    //             result
+    //         });
+    //     }catch(e){
+    //         console.log(e);
+    //         return ({
+    //             resp: e,
+    //             logs: `driverServices-get-driver-result error`,
+    //             erid: HttpStatus.INTERNAL_SERVER_ERROR,
+    //             type: AppExceptionType.INTERNAL_SERVER_ERROR
+    //         })
+    //     }
+    // }
 }
