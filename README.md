@@ -41,7 +41,7 @@ Nếu gặp lỗi trong quá trình migration, tìm đến thư mục config.jso
 
 Bắt đầu với 1 vài api truy vấn đơn giản 
 
-**+ API tra cứu thông tin các đội đua F1 :**
+**+ API tra cứu thông tin các đội đua F1, cùng thông tin các tay đua trong biên chế :**
 
 http://localhost:4000/api/v1/teams/get-all-team-info
 
@@ -62,11 +62,17 @@ http://localhost:4000/api/v1/teams/get-all-team-info
                 "world_championships": 0,
                 "highest_race_finish": 1,
                 "pole_positions": 1,
-                "fastest_laps": 7
+                "fastest_laps": 7,
+                "drivers": [
+                  {
+                    "driver_name": 
+                    .....
+                  }
+                ]
             },
   ......
 
-**+ API tra cứu một đội đua F1 bất kỳ sử dụng id của đội đua**
+**+ API tra cứu một đội đua F1 bất kỳ sử dụng id của đội đua, cùng thông tin các tay đua trong biên chế**
 
 http://localhost:4000/api/v1/teams/get-team-info/847679d7-8050-4892-ae86-68f2ec1dc3a8
 
