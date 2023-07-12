@@ -57,6 +57,7 @@ export class DriverServices extends CrudService<typeof Drivers>{
             if(!result) throw errorService.database.queryFail("found no result");
             return result
         }catch(e){
+            console.log(e)
             return ({
                 resp: e,
                 logs: `driversServices error`,

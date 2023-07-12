@@ -2,7 +2,7 @@
 import {sequelize} from '../index';
 import {DataTypes} from 'sequelize';
 
-export const Races = sequelize.define('races', {
+export const Races = sequelize.define('races_table', {
   id: {
     primaryKey: true,
     type: DataTypes.UUID,
@@ -20,4 +20,7 @@ export const Races = sequelize.define('races', {
     type: DataTypes.INTEGER,
     //allowNull: false
   }
+},
+{
+    freezeTableName: true
 })

@@ -2,7 +2,7 @@
 import {sequelize} from '../index';
 import {DataTypes} from "sequelize";
 
-export const Drivers = sequelize.define('drivers', {
+export const Drivers = sequelize.define('drivers_table', {
   id: {
     primaryKey: true,
     type: DataTypes.UUID,
@@ -11,7 +11,7 @@ export const Drivers = sequelize.define('drivers', {
   team_id: {
     type: DataTypes.UUID,
     //allowNull: true,
-    references: {model: `teams`, key: `id`}
+    references: {model: `teams_table`, key: `id`}
   },
   driver_name: {
     type: DataTypes.STRING,
@@ -53,4 +53,7 @@ export const Drivers = sequelize.define('drivers', {
     type: DataTypes.STRING,
     //allowNull: false
   }
+},
+{
+    freezeTableName: true
 })

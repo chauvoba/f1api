@@ -8,6 +8,47 @@ import {AppExceptionType} from "@/common/enum";
 
 export class TeamServices extends CrudService<typeof Teams>{
     constructor(){super(Teams)}
+    async getAllTeamInfo(){
+        try{
+            const result = await this.model.findAll({
+                attributes: {
+                    exclude: ["createdAt", "updatedAt", "deletedAt"]
+                },
+                raw: true
+            })
+            if(result.length === 0) return errorService.database.queryFail("found no result")
+            return result
+        }catch(e){
+            console.log(e);
+            return({
+                resp: e,
+                logs: `teamServices-get-all-team-info error`,
+                erid: HttpStatus.INTERNAL_SERVER_ERROR,
+                type: AppExceptionType.INTERNAL_SERVER_ERROR
+            })
+        }
+    }
+    async getTeamInfo(params: {teamid: String}){
+        try{
+            const result = await this.model.findAll({
+                where: {id: params.teamid},
+                attributes: {
+                    exclude: ["createdAt", "updatedAt", "deletedAt"]
+                },
+                raw: true
+            })
+            if(result.length === 0) return errorService.database.queryFail("found no result");
+            return result
+        }catch(e){
+            console.log(e)
+            return ({
+                resp: e,
+                logs: `teamServices-get-team-info error`,
+                erid: HttpStatus.INTERNAL_SERVER_ERROR,
+                type: AppExceptionType.INTERNAL_SERVER_ERROR
+            })
+        }
+    }
     async getAllTeamResultByYear(params: {year: Number}) {
         try{
             const result = await RaceDrivers.findAll({
@@ -29,10 +70,12 @@ export class TeamServices extends CrudService<typeof Teams>{
                 order: [["pts", "desc"]],
                 raw: true
             });
-            if(!result) return (errorService.database.queryFail("found no result"));
+            if(!result) throw errorService.database.queryFail("found no result");
             return result
         }catch(e){
+            console.log(e)
             return ({
+                resp: e,
                 logs: `teamServices error`,
                 erid: HttpStatus.INTERNAL_SERVER_ERROR,
                 type: AppExceptionType.INTERNAL_SERVER_ERROR,
@@ -52,13 +95,15 @@ export class TeamServices extends CrudService<typeof Teams>{
                     attributes: ["team_id"]
                 }],
                 attributes: [[sequelize.fn("sums", sequelize.col("points")), "pts"]],
-                group: ["races.year", "races.id", "drivers.team_id", "races.grand_prix", "races.date"],
+                group: ["races.year", "drivers.team_id", "races.id", "races.grand_prix", "races.date"],
                 raw: true
             });
-            if(!result) return (errorService.database.queryFail("found no result"));
+            if(!result) throw errorService.database.queryFail("found no result");
             return result
         }catch(e){
+            console.log(e)
             return ({
+                resp: e,
                 logs: `teamServices error`,
                 erid: HttpStatus.INTERNAL_SERVER_ERROR,
                 type: AppExceptionType.INTERNAL_SERVER_ERROR

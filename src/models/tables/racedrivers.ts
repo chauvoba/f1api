@@ -2,7 +2,7 @@
 import {sequelize} from '../index';
 import {DataTypes} from 'sequelize';
 
-export const RaceDrivers = sequelize.define('race_drivers', {
+export const RaceDrivers = sequelize.define('race_drivers_table', {
   id: {
     primaryKey: true,
     type: DataTypes.UUID,
@@ -11,12 +11,12 @@ export const RaceDrivers = sequelize.define('race_drivers', {
   driver_id: {
     type: DataTypes.UUID,
     //allowNull: false,
-    references: {model: 'drivers', key: 'id'}
+    references: {model: 'drivers_table', key: 'id'}
   },
   race_id: {
     type: DataTypes.UUID,
     //allowNull: false,
-    references: {model: 'races', key: 'id'}
+    references: {model: 'races_table', key: 'id'}
   },
   car : {
     type: DataTypes.STRING,
@@ -42,4 +42,7 @@ export const RaceDrivers = sequelize.define('race_drivers', {
     type: DataTypes.INTEGER,
     //allowNull: false
   }
+},
+{
+    freezeTableName: true
 })

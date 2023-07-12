@@ -15,7 +15,7 @@ const checkconnect = async () => {
         await sequelize.authenticate();
         return console.log(`connect database success`);
     }catch(e){
-        return console.log(`connect database failure`);
+        return console.log(`connect database failure`, e);
     }
 }
 

@@ -7,11 +7,11 @@ module.exports = {
     "host": process.env.HOST,
     "dialect": "postgresql",
     // "ssl": {
-    //   "require": true
+    //   "require": false
     // },
     // "dialectOptions": {
     //   "ssl": {
-    //     "require": true
+    //     "require": false
     //   }
     // }
   },
@@ -33,13 +33,13 @@ module.exports = {
     // "dialectOptions": {
     //   "socketPath": `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`
     // },`
-    "ssl": {
-      "require": true
-    },
-    "dialectOptions": {
-      "ssl": {
-        "require": true
-      }
-    }
+    // "ssl": {
+    //   "require": false
+    // },
+    // "dialectOptions": {
+    //   "ssl": {
+    //     "require": false
+    //   }
+    // }
   }
 }

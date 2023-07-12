@@ -1,13 +1,13 @@
 import {sequelize} from '../index';
 import {DataTypes} from 'sequelize';
 
-export const Teams = sequelize.define('teams', {
+export const Teams = sequelize.define('teams_table', {
   id: {
     primaryKey: true,
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV1
   },
-  team_name: {
+  name: {
     type: DataTypes.STRING,
     //allowNull: false
   },
@@ -19,11 +19,11 @@ export const Teams = sequelize.define('teams', {
     type: DataTypes.STRING,
     //allowNull: true
   },
-  team_technical_chief: {
+  technical_chief: {
     type: DataTypes.STRING,
     //allowNull: true
   },
-  chasis: {
+  chassis: {
     type: DataTypes.STRING,
     //allowNull: true
   },
@@ -31,11 +31,11 @@ export const Teams = sequelize.define('teams', {
     type: DataTypes.STRING,
     //allowNull: false
   },
-  first_entry: {
+  first_team_entry: {
     type: DataTypes.INTEGER,
     //allowNull: false
   },
-  world_championship: {
+  world_championships: {
     type: DataTypes.INTEGER,
     //allowNull: true
   },
@@ -43,8 +43,14 @@ export const Teams = sequelize.define('teams', {
     type: DataTypes.INTEGER,
     //allowNull: false
   },
-  pole_position: {
+  pole_positions: {
     type: DataTypes.INTEGER,
     //allowNull: false
+  },
+  fastest_laps: {
+    type: DataTypes.INTEGER
   }
+},
+{
+    freezeTableName: true
 })

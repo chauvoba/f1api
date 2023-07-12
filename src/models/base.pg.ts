@@ -35,12 +35,12 @@ if (process.env.NODE_ENV === "production") {
         },
         logging: false,
         timezone: "+07:00",
-        dialectOptions: {
-            "ssl": {
-                "require": false,
-                "rejectUnauthorized": false
-            }
-        }
+        // dialectOptions: {
+        //     "ssl": {
+        //         "require": false,
+        //         "rejectUnauthorized": false
+        //     }
+        // }
     }
 }
 if (config.database.sql['host'] === "localhost" || config.database.sql['host'] === "127.0.0.1") {
