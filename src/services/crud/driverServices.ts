@@ -8,6 +8,59 @@ import {AppExceptionType} from "@/common/enum";
 
 export class DriverServices extends CrudService<typeof Drivers>{
     constructor(){super(Drivers)}
+    async getAllDriverInfo() {
+        try{
+            const result = await this.model.findAll({
+                include: [
+                    {
+                        association: "teams",
+                        attributes: ["name"]
+                    }
+                ],
+                attributes: {
+                    exclude: ["createdAt", "updatedAt", "deletedAt", "id", "team_id"]
+                },
+                raw: false
+            })
+            if(result.length === 0) return errorService.database.queryFail("found no result");
+            return result;
+        }catch(e){
+            console.log(e);
+            return ({
+                resp: e,
+                logs: `driverServices-get-all-driver error`,
+                erid: HttpStatus.INTERNAL_SERVER_ERROR,
+                type: AppExceptionType.INTERNAL_SERVER_ERROR
+            })
+        }
+    }
+    async getDriverInfo(params: {driverid: String}) {
+        try{
+            const result = await this.model.findAll({
+                where: {id: params.driverid},
+                include: [
+                    {
+                        association: "teams",
+                        attributes: ["name"]
+                    }
+                ],
+                attributes: {
+                    exclude: ["createdAt", "updatedAt", "deletedAt", "id", "team_id"]
+                },
+                raw: false
+            })
+            if(result.length === 0) return errorService.database.queryFail("found no result");
+            return result;
+        }catch(e){
+            console.log(e);
+            return ({
+                resp: e,
+                logs: `driverServices-get-driver-info error`,
+                erid: HttpStatus.INTERNAL_SERVER_ERROR,
+                type: AppExceptionType.INTERNAL_SERVER_ERROR
+            })
+        }
+    }
     async getAllDriverResultByYear(params: {year: Number}) {
         try{
             const result = await RaceDrivers.findAll({

@@ -41,7 +41,7 @@ module.exports = {
                 type: Sequelize.DataTypes.INTEGER,
               },
               date_of_birth: {
-                type: Sequelize.DataTypes.DATE,
+                type: Sequelize.DataTypes.DATEONLY,
               },
               place_of_birth: {
                 type: Sequelize.DataTypes.STRING,

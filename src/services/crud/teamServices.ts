@@ -11,10 +11,16 @@ export class TeamServices extends CrudService<typeof Teams>{
     async getAllTeamInfo(){
         try{
             const result = await this.model.findAll({
+                include: [
+                    {
+                        association: "drivers",
+                        attributes: ["driver_name", "id"]
+                    }
+                ],
                 attributes: {
                     exclude: ["createdAt", "updatedAt", "deletedAt"]
                 },
-                raw: true
+                raw: false
             })
             if(result.length === 0) return errorService.database.queryFail("found no result")
             return result
@@ -32,10 +38,16 @@ export class TeamServices extends CrudService<typeof Teams>{
         try{
             const result = await this.model.findAll({
                 where: {id: params.teamid},
+                include: [
+                    {
+                        association: "drivers",
+                        attributes: ["driver_name"]
+                    }
+                ],
                 attributes: {
                     exclude: ["createdAt", "updatedAt", "deletedAt"]
                 },
-                raw: true
+                raw: false,
             })
             if(result.length === 0) return errorService.database.queryFail("found no result");
             return result

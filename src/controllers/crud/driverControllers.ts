@@ -5,6 +5,14 @@ export class DriverControllers extends CrudController<typeof driverServices>{
     constructor(){
         super(driverServices)
     }
+    async getAllDriverInfo(){
+        const result = await this.service.getAllDriverInfo();
+        return result;
+    }
+    async getDriverInfo(params: {driverid: String}){
+        const result = await this.service.getDriverInfo(params);
+        return result;
+    }
     async getAllDriverResultByYear(params: {year: Number}){
         const result = await this.service.getAllDriverResultByYear(params);
         return result;

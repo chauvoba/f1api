@@ -46,7 +46,7 @@ export const Drivers = sequelize.define('drivers_table', {
     //allowNull: false
   },
   date_of_birth: {
-    type: DataTypes.DATE,
+    type: DataTypes.DATEONLY,
     //allowNull: false
   },
   place_of_birth: {
