@@ -102,7 +102,35 @@ ID của một vài đội đua khác mà bạn có thể thử nghiệm :
 => Đội 1 : a5723c13-5f91-4a72-8f3b-f535225d2098
 
 => Đội 2 : 99dd6aba-3cb6-4624-97ff-9ff9f95f1406
-  
+
+**+ API tra cứu thông tin của tay đua, kèm với đội đua mà người này thuộc biên chế**
+
+http://localhost:4000/api/v1/drivers/get-driver-info/26bbc21b-7783-4809-ad87-888a210df628
+
+=> Kết quả nhận được :
+{
+    "code": 200,
+    "results": {
+        "object": [
+            {
+                "driver_name": "Max Verstappen",
+                "country": "Netherlands",
+                "podium": 87,
+                "points": 2267,
+                "grand_prix_entered": 173,
+                "world_champions": 2,
+                "highest_race_finish": 1,
+                "highest_grid_position": 1,
+                "date_of_birth": "1997-09-30",
+                "place_of_birth": "Belgium",
+                "teams": {
+                    "name": "Oracle Red Bull Racing"
+                }
+            }
+        ]
+    }
+}
+
   
 
 
