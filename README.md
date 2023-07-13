@@ -219,6 +219,59 @@ http://localhost:4000/drivers/get-all-driver-result/2023
                 },
                 ......
 
+**+ API tra cứu kết quả của một cuộc đua**
+
+Format api truy vấn : 
+
+http://localhost:4000/races/:year/get-race-result/:raceid 
+
+Ví dụ : 
+
+http://localhost:4000/races/2023/get-race-result/64aff9b2-538d-4a3d-9fc5-5e03f2a5f311
+
+=> Kết quả nhận được : 
+
+{
+    "code": 200,
+    "results": {
+        "object": {
+            "resp": "Showing result of race 64aff9b2-538d-4a3d-9fc5-5e03f2a5f311 in 2023",
+            "result": [
+                {
+                    "car": "Red Bull Racing Honda RBPT",
+                    "position": 1,
+                    "laps": 57,
+                    "time": "1:33:56",
+                    "race_points": 25,
+                    "number_order": 1,
+                    "races.grand_prix": "Bahrain",
+                    "drivers.driver_name": "Max Verstappen"
+                },
+                {
+                    "car": "Alfa Romeo Ferrari",
+                    "position": 8,
+                    "laps": 57,
+                    "time": "1:34:12",
+                    "race_points": 4,
+                    "number_order": 77,
+                    "races.grand_prix": "Bahrain",
+                    "drivers.driver_name": "Valtteri Pottas"
+                },
+                {
+                    "car": "Alfa Romeo Ferrari",
+                    "position": 16,
+                    "laps": 56,
+                    "time": "1:35:36",
+                    "race_points": 0,
+                    "number_order": 24,
+                    "races.grand_prix": "Bahrain",
+                    "drivers.driver_name": "Zhou Guanyu"
+                }
+            ]
+        }
+    }
+}
+
 **NHỮNG PHẦN ĐÃ THỰC HIỆN ĐƯỢC** 
 
 **TEAM API :**
