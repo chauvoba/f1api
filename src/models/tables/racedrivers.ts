@@ -34,7 +34,7 @@ export const RaceDrivers = sequelize.define('race_drivers_table', {
     type: DataTypes.STRING,
     //allowNull: false
   },
-  points: {
+  race_points: {
     type: DataTypes.INTEGER,
     //allowNull: false
   },

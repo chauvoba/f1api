@@ -7,4 +7,8 @@ export class RaceControllers extends CrudController<typeof raceSerivces>{
         const result = await this.service.getRaceInfo(params);
         return result;
     }
+    async getRaceResult(params: {year: Number, raceid: String}){
+        const result = await this.service.getRaceResult(params);
+        return result;
+    }
 }

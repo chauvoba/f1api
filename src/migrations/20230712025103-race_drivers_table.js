@@ -32,7 +32,7 @@ module.exports = {
               time: {
                 type: Sequelize.DataTypes.STRING
               },
-              points: {
+              race_points: {
                 type: Sequelize.DataTypes.INTEGER
               },
               number_order: {

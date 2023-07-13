@@ -23,7 +23,10 @@ export class TeamServices extends CrudService<typeof Teams>{
                 raw: false
             })
             if(result.length === 0) return errorService.database.queryFail("found no result")
-            return result
+            return ({
+                resp: `Showing all F1 team info`,
+                result
+            })
         }catch(e){
             console.log(e);
             return({
@@ -50,7 +53,10 @@ export class TeamServices extends CrudService<typeof Teams>{
                 raw: false,
             })
             if(result.length === 0) return errorService.database.queryFail("found no result");
-            return result
+            return ({
+                resp: `Showing F1 team ${params.teamid} info`,
+                result
+            })
         }catch(e){
             console.log(e)
             return ({
