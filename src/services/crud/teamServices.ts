@@ -156,4 +156,50 @@ export class TeamServices extends CrudService<typeof Teams>{
             })
         }
     }
+    async getTeamTotalPointByYear(params: {year: Number, teamid: String}){
+        try{
+            const result = await RaceDrivers.findAll({
+                where: {
+                    "$races.year$": params.year,
+                    "$drivers.team_id$": params.teamid
+                },
+                include: [
+                    {
+                        association: "races",
+                        attributes: []
+                    },
+                    {
+                        association: "drivers",
+                        attributes: [],
+                        include: [
+                            {
+                                association: "teams",
+                                attributes: ["name"]
+                            }
+                        ]
+                    }
+                ],
+                attributes: [
+                    [sequelize.fn("sum", sequelize.col("race_points")), `Total points in ${params.year}`]
+                ],
+                group: [
+                    "drivers->teams.id"
+                ],
+                raw: true
+            })
+            if(result.length === 0) return errorService.database.queryFail("found no result");
+            return ({
+                resp: `Showing team ${params.teamid} total point in ${params.year}`,
+                result
+            })
+        }catch(e){
+            console.log(e);
+            return ({
+                resp: e,
+                logs: `teamServices-get-total-points error`,
+                erid: HttpStatus.INTERNAL_SERVER_ERROR,
+                type: AppExceptionType
+            })
+        }
+    }
 }

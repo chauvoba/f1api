@@ -12,6 +12,7 @@ export default class TeamRouter extends CrudRouter<typeof teamControllers> {
         this.router.get("/get-team-info/:teamid", this.route(this.getTeamInfo))
 		this.router.get("/get-all-team-result/:year", this.route(this.getAllTeamResultByYear))
         this.router.get("/:teamid/get-team-result/:year", this.route(this.getTeamResultByYear))
+        this.router.get("/:teamid/get-team-total-point/:year", this.route(this.getTeamTotalPointByYear))
 	}
     async getAllTeamInfo(req: Request, res: Response) {
         const result = await this.controller.getAllTeamInfo();
@@ -33,4 +34,10 @@ export default class TeamRouter extends CrudRouter<typeof teamControllers> {
 		const result = await this.controller.getAllTeamResultByYear({ year })
 		this.onSuccess(res, result)
 	}
+    async getTeamTotalPointByYear(req: Request, res: Response) {
+        const year: Number = parseInt(req.params.year);
+        const teamid: String = req.params.teamid;
+        const result = await this.controller.getTeamTotalPointByYear({year, teamid})
+        this.onSuccess(res, result);
+    }
 }

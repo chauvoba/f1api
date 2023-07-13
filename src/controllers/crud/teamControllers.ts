@@ -21,4 +21,8 @@ export class TeamControllers extends CrudController<typeof teamServices>{
         const result = await this.service.getTeamResultByYear(params);
         return result;
     }
+    async getTeamTotalPointByYear(params: {year: Number, teamid: String}){
+        const result = await this.service.getTeamTotalPointByYear(params);
+        return result;
+    }
 }
