@@ -11,7 +11,7 @@ export default class TeamRouter extends CrudRouter<typeof teamControllers> {
         this.router.get("/get-all-team-info", this.route(this.getAllTeamInfo))
         this.router.get("/get-team-info/:teamid", this.route(this.getTeamInfo))
 		this.router.get("/get-all-team-result/:year", this.route(this.getAllTeamResultByYear))
-        this.router.get(":teamid/get-team-result/:year", this.route(this.getTeamResultByYear))
+        this.router.get("/:teamid/get-team-result/:year", this.route(this.getTeamResultByYear))
 	}
     async getAllTeamInfo(req: Request, res: Response) {
         const result = await this.controller.getAllTeamInfo();
