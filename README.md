@@ -288,7 +288,8 @@ http://localhost:4000/races/2023/get-race-result/64aff9b2-538d-4a3d-9fc5-5e03f2a
 
   **RACE API**
 
-+ Api trả kết quả thông tin của một cuộc đua 
++ Api hiển thị thông tin của một cuộc đua (Địa điểm, ngày, năm)
++ Api hiển thị kết quả của một cuộc đua (Người chiến thắng, thời gian, bla bla ...) 
 
 
 **NHỮNG PHẦN CHƯA THỰC HIỆN ĐƯỢC**
