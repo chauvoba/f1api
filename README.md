@@ -40,7 +40,7 @@ Nếu gặp lỗi trong quá trình migration, hãy tìm đến thư mục confi
 
 **STEP 4 : API TRUY VẤN DỮ LIỆU**
 
-Bạn có thể truy cập đến đường dẫn sau để xem toàn bộ API đã được thực hiện của bài tập và kiểm tra kết quả phản hồi của chúng. 
+Bạn có thể truy cập đến đường dẫn sau để xem toàn bộ API đã được thực hiện của bài tập.
 https://hitek-testing-api.postman.co/workspace/Hitek-~bfb8a5c6-7f12-4f56-856a-efe13bc319f0/collection/27761194-0bbfffe0-983e-417c-858e-eef6a2330159?action=share&creator=27761194
 
 **NHỮNG PHẦN ĐÃ THỰC HIỆN ĐƯỢC** 
