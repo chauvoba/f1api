@@ -63,6 +63,7 @@ Bạn có thể tìm đến đường dẫn Basef1/Database-table-erd.png để 
 + Api trả kết quả thông tin tay đua kèm đội đua mà người này thuộc biên chế
 + Api trả kết quả tra cứu thành tích đua trong 1 năm của tay đua dựa theo driverid và year
 + Api trả kết quả thành tích đua trong năm của toàn bộ tay đua
++ Api trả kết quả tổng điểm mà một tay đua đạt được trong năm
 
   **RACE API**
 
