@@ -65,7 +65,7 @@ Bạn có thể tìm đến đường dẫn Basef1/Database-table-erd.png để 
 + Api trả kết quả thành tích đua trong năm của toàn bộ tay đua
 + Api trả kết quả tổng điểm mà một tay đua đạt được trong năm
 
-  **RACE API**
+**RACE API**
 
 + Api hiển thị thông tin của một cuộc đua (Địa điểm, ngày, năm)
 + Api hiển thị kết quả của một cuộc đua (Người chiến thắng, thời gian, ...) 
