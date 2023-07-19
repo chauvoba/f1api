@@ -146,4 +146,44 @@ export class DriverServices extends CrudService<typeof Drivers>{
             })
         }
     }
+    async getDriverTotalPointByYear(params: {year: Number, driverid: String}){
+        try{
+            const result = await RaceDrivers.findAll({
+                where: {
+                    "$races.year$": params.year,
+                    "$drivers.id$": params.driverid
+                },
+                include: [
+                    {
+                        association: "races",
+                        attributes: []
+                    },
+                    {
+                        association: "drivers",
+                        attributes: ["driver_name"]
+                    }
+                ],
+                attributes: [
+                    [sequelize.fn("sum", sequelize.col("race_points")), `Total points in ${params.year}`]
+                ],
+                group: [
+                    "drivers.driver_name"
+                ],
+                raw: true
+            })
+            if (result.length === 0) return errorService.database.queryFail("found no result");
+            return ({
+                resp: `Showing driver ${params.driverid} total points achived in ${params.year}`,
+                result
+            })
+        }catch(e){
+            console.log(e);
+            return ({
+                resp: e,
+                logs: `driverServices-get-driver-total-points error`,
+                erid: HttpStatus.INTERNAL_SERVER_ERROR,
+                type: AppExceptionType.INTERNAL_SERVER_ERROR
+            })
+        }
+    }
 }

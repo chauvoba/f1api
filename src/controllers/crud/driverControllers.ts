@@ -21,4 +21,8 @@ export class DriverControllers extends CrudController<typeof driverServices>{
         const result = await this.service.getDriverResultByYear(params);
         return result;
     }
+    async getDriverTotalPointByYear(params: {year: Number, driverid: String}){
+        const result = await this.service.getDriverTotalPointByYear(params);
+        return result;
+    }
 }

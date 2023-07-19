@@ -130,14 +130,20 @@ export class TeamServices extends CrudService<typeof Teams>{
                     },
                     {
                         association: "drivers",
-                        attributes: []
+                        attributes: [],
+                        include: [
+                            {
+                                association: "teams",
+                                attributes: ["name"]
+                            }
+                        ]
                     }
                 ],
                 attributes: [
                     [sequelize.fn("sum", sequelize.col("race_points")), "Total team points in grand prix"]
                 ],
                 group: [
-                    "races.grand_prix", "races.date", "drivers.team_id"
+                    "drivers->teams.id", "races.grand_prix", "races.date", "drivers.team_id"
                 ],
                 raw: true
             })
@@ -198,7 +204,7 @@ export class TeamServices extends CrudService<typeof Teams>{
                 resp: e,
                 logs: `teamServices-get-total-points error`,
                 erid: HttpStatus.INTERNAL_SERVER_ERROR,
-                type: AppExceptionType
+                type: AppExceptionType.INTERNAL_SERVER_ERROR
             })
         }
     }
